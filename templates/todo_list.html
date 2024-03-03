@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Todo List</h1>
+                <a href="{% url 'todo_create' %}" class="btn btn-primary">Create New Todo</a>
+                <ul class="list-group">
+                    {% for todo in todos %}
+                        <li class="list-group-item">
+                            <input type="checkbox" {% if todo.completed %}checked{% endif %}>
+                            <span>{{ todo.title }}</span>
+                            <a href="{% url 'todo_update' todo.id %}" class="btn btn-warning">Edit</a>
+                            <a href="{% url 'todo_delete' todo.id %}" class="btn btn-danger">Delete</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
